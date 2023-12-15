@@ -9,15 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-    <dependencies>
-        <!-- Snowflake JDBC Driver -->
-        <dependency>
-            <groupId>net.snowflake</groupId>
-            <artifactId>snowflake-jdbc</artifactId>
-            <version>3.13.29</version>
-        </dependency>
-        <!-- Other dependencies -->
-    </dependencies>
+   
 
     <build>
         <plugins>
