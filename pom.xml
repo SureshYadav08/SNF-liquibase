@@ -9,7 +9,17 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-   
+   <properties>
+        <snowflake.urlBase>
+            jdbc:snowflake://AHVINWU-MHB38642.us-east-2.snowflakecomputing.com/?warehouse="COMPUTE_WH"&amp;role="ACCOUNTADMIN"</snowflake.urlBase>
+    </properties>
+
+    <modules>
+        <module>QUALITY/DEV</module>
+        <module>QUALITY/QA</module>
+        <module>QUALITY/PROD</module>
+
+    </modules>
 
     <build>
         <plugins>
@@ -21,7 +31,7 @@
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
-                    <url>jdbc:snowflake://AHVINWU-MHB38642.us-east-1.snowflakecomputing.com/</url>
+                    <url>jdbc:snowflake://AHVINWU-MHB38642.us-east-2.snowflakecomputing.com/</url>
                     <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
