@@ -15,10 +15,11 @@ jobs:
           $env:JAVA_HOME = $env:JAVA_HOME_11_X64
           $env:SNOWFLAKE_ENV_ID = "QUALITY"
           $env:SNOWFLAKE_ACCOUNT = "AHVINWU.MHB38642"
-          $env:SNOWFLAKE_WAREHOUSE = "${{ secrets.SNOWFLAKE_WAREHOUSE }}"
-          $env:SNOWFLAKE_ROLE = "SYSADMIN"
+          $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
+          $env:SNOWFLAKE_ROLE = "ACCOUNTADMIN"
           $env:SNOWFLAKE_USER = "SURESHYADAV"
           $env:SNOWFLAKE_PASSWORD = "Suresh@18"
+          $env:SCHEMA_NAME = "DEV"
           mvn -version
           mvn install 
           mvn liquibase:update
