@@ -1,1 +1,47 @@
+<project>
+    <!-- ... -->
+    <dependencies>
+        <!-- Snowflake JDBC Driver -->
+        <dependency>
+            <groupId>net.snowflake</groupId>
+            <artifactId>snowflake-jdbc</artifactId>
+            <version>3.13.29</version>
+        </dependency>
+        <!-- Other dependencies -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.5.0</version>
+                <configuration>
+                    <!-- Liquibase configurations -->
+                    <changeLogFile>changelog.xml</changeLogFile>
+                    <!-- Snowflake JDBC URL, driver class, username, and password -->
+                    <url>jdbc:snowflake://MHB38642.us-east-1.snowflakecomputing.com/</url>
+                    <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
+                    <username>SURESHYADAV</username>
+                    <password>Suresh@18</password>
+                </configuration>
+                <dependencies>
+                    <!-- Dependencies for Liquibase-Snowflake extension -->
+                    <dependency>
+                        <groupId>org.liquibase.ext</groupId>
+                        <artifactId>liquibase-snowflake</artifactId>
+                        <version>4.2.1</version>
+                    </dependency>
+                    <!-- Snowflake JDBC driver -->
+                    <dependency>
+                        <groupId>net.snowflake</groupId>
+                        <artifactId>snowflake-jdbc</artifactId>
+                        <version>3.13.29</version>
+                    </dependency>
+                    <!-- Other dependencies -->
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
 
