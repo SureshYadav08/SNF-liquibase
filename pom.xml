@@ -14,13 +14,6 @@
             jdbc:snowflake://AHVINWU-MHB38642.us-east-2.snowflakecomputing.com/?warehouse="COMPUTE_WH"&amp;role="ACCOUNTADMIN"</snowflake.urlBase>
     </properties>
 
-    <modules>
-        <module>QUALITY/DEV</module>
-        <module>QUALITY/QA</module>
-        <module>QUALITY/PROD</module>
-
-    </modules>
-
     <build>
         <plugins>
             <plugin>
