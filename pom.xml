@@ -10,7 +10,7 @@
     <version>1.0.0</version>
 
     <properties>
-    <snowflake.urlBase>jdbc:snowflake://ahvinwu-mhb38642.us-east-1.snowflakecomputing.com/</snowflake.urlBase>
+     jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
 </properties>
 
 
@@ -24,7 +24,7 @@
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
-                    <url>jdbc:snowflake://ahvinwu-mhb38642.us-east-1.snowflakecomputing.com/</url>
+                    <!-- <url>jdbc:snowflake://ahvinwu-mhb38642.us-east-1.snowflakecomputing.com/</url> -->
                     <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
