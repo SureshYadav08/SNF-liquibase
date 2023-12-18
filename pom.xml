@@ -24,7 +24,7 @@
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
-                    <url>jdbc:snowflake://AHVINWU-MHB38642.us-east-1.snowflakecomputing.com/</url>
+                    <!-- <url>jdbc:snowflake://AHVINWU-MHB38642.us-east-1.snowflakecomputing.com/</url> -->
                     <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
