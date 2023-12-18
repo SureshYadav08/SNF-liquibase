@@ -10,7 +10,8 @@
     <version>1.0.0</version>
 
     <properties>
-     jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+    <snowflake.urlBase>
+             jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
 </properties>
 
 
