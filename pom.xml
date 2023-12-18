@@ -9,11 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-   <properties>
-    <snowflake.urlBase>
-jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
-</properties>
-
 
     <build>
         <plugins>
@@ -26,7 +21,7 @@ jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${en
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
                          <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                  <!-- <url>jdbc:snowflake://mhb38642.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</url> -->
+                  <url>jdbc:snowflake://mhb38642.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</url>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
                 </configuration>
