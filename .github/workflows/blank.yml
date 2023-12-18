@@ -1,8 +1,5 @@
 name: Testing
 on: 
-  pull_request: 
-    branches: 
-      - main
   workflow_dispatch:
 jobs: 
   Liquibase_Job:
