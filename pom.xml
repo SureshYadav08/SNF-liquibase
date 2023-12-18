@@ -25,8 +25,8 @@ jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${en
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
+                         <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                   <url>jdbc:snowflake://mhb38642.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</url>
-                    <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
                 </configuration>
@@ -41,7 +41,7 @@ jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${en
                     <dependency>
                         <groupId>net.snowflake</groupId>
                         <artifactId>snowflake-jdbc</artifactId>
-                        <version>3.13.29</version>
+                        <version>3.14.4</version>
                     </dependency>
                     <!-- Other dependencies -->
                 </dependencies>
