@@ -11,7 +11,7 @@
 
    <properties>
         <snowflake.urlBase>
-            jdbc:snowflake://AHVINWU-MHB38642.us-east-2.snowflakecomputing.com/?warehouse="COMPUTE_WH"&amp;role="ACCOUNTADMIN"</snowflake.urlBase>
+            jdbc:snowflake://AHVINWU-MHB38642.us-east-1.snowflakecomputing.com/?warehouse="COMPUTE_WH"&amp;role="ACCOUNTADMIN"</snowflake.urlBase>
     </properties>
 
     <build>
