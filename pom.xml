@@ -12,7 +12,7 @@
          <properties>
         
         <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+            jdbc:snowflake://mhb38642.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
                   <snowflake.db>QUALITY</snowflake.db>
         <snowflake.schema>DEV</snowflake.schema>
     </properties>
