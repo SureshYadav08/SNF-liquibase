@@ -28,8 +28,8 @@
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
-                         <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                   <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
+                         <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
                     <username>SURESHYADAV</username>
                     <password>Suresh@18</password>
                 </configuration>
