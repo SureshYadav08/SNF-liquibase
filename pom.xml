@@ -12,9 +12,9 @@
          <properties>
         
         <snowflake.urlBase>
-            jdbc:snowflake://mhb38642.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
-                  <snowflake.db>QUALITY</snowflake.db>
-        <snowflake.schema>DEV</snowflake.schema>
+            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+                  <snowflake.db>$env:SNOWFLAKE_ENV_ID</snowflake.db>
+        <snowflake.schema>$env:SCHEMA_NAME</snowflake.schema>
     </properties>
 
 
@@ -25,13 +25,16 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.2.2</version>
                 <configuration>
+                         <skip>true</skip>
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
                   <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
                          <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                    <username>SURESHYADAV</username>
-                    <password>Suresh@18</password>
+                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                        <verbose>true</verbose>
+                    <username>RAJU_EARLAPALLY</username>
+                    <password>Welcome@123</password>
                 </configuration>
                 <dependencies>
                     <!-- Dependencies for Liquibase-Snowflake extension -->
