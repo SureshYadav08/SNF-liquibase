@@ -9,12 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
          
-         <properties>
-        
-        <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
-                  <snowflake.db>$env:SNOWFLAKE_ENV_ID</snowflake.db>
-        <snowflake.schema>$env:SCHEMA_NAME</snowflake.schema>
+    <properties>
+        <snowflake.urlBase>jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+        <snowflake.db>${env:SNOWFLAKE_ENV_ID}</snowflake.db>
+        <snowflake.schema>${env:SCHEMA_NAME}</snowflake.schema>
     </properties>
 
 
