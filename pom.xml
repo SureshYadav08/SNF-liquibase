@@ -23,6 +23,16 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.2.2</version>
                 <dependencies>
+                <configuration>
+                    <skip>false</skip>
+                    <!-- Liquibase configurations -->
+                    <changeLogFile>changelog.xml</changeLogFile>
+                    <!-- Snowflake JDBC URL, driver class, username, and password -->
+                    <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
+                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>       
+                    <username>RAJU_EARLAPALLY</username>
+                    <password>Welcome@123</password>
+                </configuration>
                     <!-- Dependencies for Liquibase-Snowflake extension -->
                     <dependency>
                         <groupId>org.liquibase.ext</groupId>
@@ -35,16 +45,6 @@
                         <artifactId>snowflake-jdbc</artifactId>
                         <version>3.14.4</version>
                     </dependency>
-                    <configuration>
-                    <skip>false</skip>
-                    <!-- Liquibase configurations -->
-                    <changeLogFile>changelog.xml</changeLogFile>
-                    <!-- Snowflake JDBC URL, driver class, username, and password -->
-                    <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>       
-                    <username>RAJU_EARLAPALLY</username>
-                    <password>Welcome@123</password>
-                </configuration>
                 </dependencies>
             </plugin>
         </plugins>
