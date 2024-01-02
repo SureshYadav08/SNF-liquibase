@@ -10,11 +10,11 @@ jobs:
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:SNOWFLAKE_ENV_ID = "QUALITY"
-          $env:SNOWFLAKE_ACCOUNT = "ahvinwu-mhb38642"
+          $env:SNOWFLAKE_ACCOUNT = "tdunaim-jq77831"
           $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
           $env:SNOWFLAKE_ROLE = "SYSADMIN"
-          $env:SNOWFLAKE_USER = "SURESHYADAV"
-          $env:SNOWFLAKE_PASSWORD = "Suresh@18"
+          $env:SNOWFLAKE_USER = "RAJU_EARLAPALLY"
+          $env:SNOWFLAKE_PASSWORD = "Welcome@123"
           $env:SCHEMA_NAME = "DEV"
           mvn -version
           mvn install 
