@@ -23,14 +23,11 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.2.2</version>
                 <configuration>
-                         <skip>true</skip>
                     <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
                   <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
                          <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                        <verbose>true</verbose>
                     <username>RAJU_EARLAPALLY</username>
                     <password>Welcome@123</password>
                 </configuration>
