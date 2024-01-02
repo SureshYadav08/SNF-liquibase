@@ -27,8 +27,8 @@
                     <skip>true</skip>
                     <changeLogFile>changelog.xml</changeLogFile>
                     <!-- Snowflake JDBC URL, driver class, username, and password -->
-                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
                     <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
+                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                     <verbose>true</verbose>       
                     <username>RAJU_EARLAPALLY</username>
