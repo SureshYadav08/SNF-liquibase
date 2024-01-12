@@ -1,4 +1,4 @@
-name: Snowflake Liquibase Deployment
+name: SnowflakeLiquibaseDeployment
 on: 
   pull_request: 
     branches: 
@@ -10,7 +10,6 @@ jobs:
       steps:
       - name: Clone Repo
       - uses: actions/checkout@v3
-
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
