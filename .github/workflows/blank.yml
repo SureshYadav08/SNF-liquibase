@@ -26,4 +26,4 @@ jobs:
           $env:SNOWFLAKE_PASSWORD = "Welcome@123"
           mvn -version
           mvn install 
-          mvn liquibase:update
+          mvn -e liquibase:update
