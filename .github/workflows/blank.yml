@@ -1,7 +1,10 @@
 name: Snowflake Liquibase Deployment
 
 on:
-  workflow_dispatch 
+  pull_request:
+   branches:
+      - main
+  workflow_dispatch: 
 
 jobs:
   deploy:
