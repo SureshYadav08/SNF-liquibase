@@ -1,16 +1,13 @@
 name: Snowflake Liquibase Deployment
-
-on:
-  pull_request:
-   branches:
+on: 
+  pull_request: 
+    branches: 
       - main
-  workflow_dispatch: 
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
+  workflow_dispatch:
+jobs: 
+  Liquibase_Job:
+    runs-on: windows-latest
+      steps:
       - name: Clone Repo
       - uses: actions/checkout@v3
 
@@ -19,16 +16,15 @@ jobs:
         with:
           java-version: '11'  
           distribution: 'adopt'
-          
-      - name: Install Liquibase extension
-        run: mvn com.microsoft.azure:azure-maven-plugin:install-jar
-      
-      - name: Deploy changes to Snowflake
-        run: mvn liquibase:update
-        env:
-          $env:SNOWFLAKE_ACCOUNT: "cupueci-lmb72269"
-          $env:SNOWFLAKE_USER: "SureshYadav"
-          $env:SNOWFLAKE_PASSWORD: "Welcome@123"
-          $env:SNOWFLAKE_DATABASE: "QUALITY"
-          $env:SNOWFLAKE_WAREHOUSE: "COMPUTE_WH"
-          $env:SNOWFLAKE_SCHEMA: "DEV"
+      - name: Configure snowflake variables & run mvn liquibase update
+        run: |
+          $env:SNOWFLAKE_ENV_ID = "QUALITY"
+          $env:SNOWFLAKE_EXT_STG_ENV = "DEV"
+          $env:SNOWFLAKE_ACCOUNT = "cupueci-lmb72269"
+          $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
+          $env:SNOWFLAKE_ROLE = "ACCOUNTADMIN"
+          $env:SNOWFLAKE_USER = "SureshYadav"
+          $env:SNOWFLAKE_PASSWORD = "Welcome@123"
+          mvn -version
+          mvn install 
+          mvn liquibase:update
