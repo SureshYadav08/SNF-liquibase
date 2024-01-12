@@ -15,12 +15,6 @@
         <snowflake.urlBase>jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
     </properties>
 
-    <modules>
-        <module>QUALITY/DEV</module>
-        <module>QUALITY/PROD</module>
-        <module>QUALITY/QA</module>
-    </modules>
-
     <build>
         <plugins>
             <plugin>
