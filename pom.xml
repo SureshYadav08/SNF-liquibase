@@ -8,18 +8,18 @@
     <artifactId>SNF-liquibase</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
-         
+
     <properties>
         <snowflake.db>QUALITY</snowflake.db>
         <snowflake.schema>DEV</snowflake.schema>
         <snowflake.urlBase>jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
     </properties>
-     <modules>
+
+    <modules>
         <module>QUALITY/DEV</module>
         <module>QUALITY/PROD</module>
         <module>QUALITY/QA</module>
-     <modules>
-
+    </modules>
 
     <build>
         <plugins>
@@ -28,13 +28,11 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.2.2</version>
                 <dependencies>
-                    <!-- Dependencies for Liquibase-Snowflake extension -->
                     <dependency>
                         <groupId>org.liquibase.ext</groupId>
                         <artifactId>liquibase-snowflake</artifactId>
                         <version>4.2.1</version>
                     </dependency>
-                    <!-- Snowflake JDBC driver -->
                     <dependency>
                         <groupId>net.snowflake</groupId>
                         <artifactId>snowflake-jdbc</artifactId>
@@ -43,11 +41,9 @@
                 </dependencies>
                 <configuration>
                     <skip>false</skip>
-                    <!-- Liquibase configurations -->
                     <changeLogFile>changelog.xml</changeLogFile>
-                    <!-- Snowflake JDBC URL, driver class, username, and password -->
                     <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>       
+                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}</url>
                     <username>SureshYadav</username>
                     <password>Welcome@123</password>
                 </configuration>
@@ -55,4 +51,3 @@
         </plugins>
     </build>
 </project>
-
