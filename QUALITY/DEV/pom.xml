@@ -13,7 +13,7 @@
     <artifactId>QUALITY.DEV</artifactId>
 
     <properties>
-        <snowflake.db>QUALITY</snowflake.db>
+        <snowflake.db>QUAL</snowflake.db>
         <snowflake.schema>DEV</snowflake.schema>
     </properties>
 
