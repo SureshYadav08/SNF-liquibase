@@ -10,20 +10,14 @@ jobs:
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'  
-          distribution: 'adopt'
-      - name: Configure snowflake variables & run mvn liquibase update
-        run: |
+      - name:
+        run: Configure snowflake variables & run mvn liquibase update|
           $env:SNOWFLAKE_ENV_ID = "QUALITY"
-          $env:SNOWFLAKE_EXT_STG_ENV = "DEV"
           $env:SNOWFLAKE_ACCOUNT = "cupueci-lmb72269"
           $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
-          $env:SNOWFLAKE_ROLE = "accountadmin"
-          $env:SNOWFLAKE_USER = "surya"
-          $env:SNOWFLAKE_PASSWORD = "Surya@183"
+          $env:SNOWFLAKE_ROLE = "ACCOUNTADMIN"
+          $env:SNOWFLAKE_USER = "SURESHYADAV"
+          $env:SNOWFLAKE_PASSWORD = "Welcome@123"
           mvn -version
           mvn install 
-          mvn -e liquibase:update
+          mvn liquibase:update
