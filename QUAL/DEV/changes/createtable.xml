@@ -7,7 +7,7 @@
   <changeSet author="SureshYadav" id="1">
     <sql>
 
-	CREATE OR REPLACE TABLE IF NOT EXISTS  TEST_A (
+	CREATE TABLE IF NOT EXISTS  TEST_A (
     ID NUMBER,
       NAME VARCHAR
    )
