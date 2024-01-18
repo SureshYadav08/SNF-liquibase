@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
-          $env:SNOWFLAKE_ENV_ID = "QUALITY"
+          $env:SNOWFLAKE_ENV_ID = "QUAL"
           $env:SNOWFLAKE_ACCOUNT = "cupueci-lmb72269"
           $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
           $env:SNOWFLAKE_ROLE = "ACCOUNTADMIN"
