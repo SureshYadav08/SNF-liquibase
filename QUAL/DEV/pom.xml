@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>QUALITY.DEV</artifactId>
+    <artifactId>QUAL.DEV</artifactId>
 
     <properties>
         <snowflake.db>QUAL</snowflake.db>
