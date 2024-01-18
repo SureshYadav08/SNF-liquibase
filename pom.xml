@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
-    <artifactId>snowflake-datalake-schema</artifactId>
+    <artifactId>SNF-liquibase</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
