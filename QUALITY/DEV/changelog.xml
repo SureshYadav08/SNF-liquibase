@@ -10,5 +10,5 @@
     </sqlCheck>
   </preConditions>
   
-  <include file="changes/4376_VWDIMDATE_RELATED_OBJECTS.xml"/>
+  <include file="changes/createtable.xml"/>
 </databaseChangeLog>
