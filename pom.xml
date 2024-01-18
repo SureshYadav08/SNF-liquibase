@@ -16,7 +16,7 @@
     </properties>
 
     <modules>
-        <module>QUALITY/DEV</module>
+        <module>QUAL/DEV</module>
     </modules>
 
     <build>
