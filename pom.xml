@@ -12,7 +12,7 @@
     <properties>
         <snowflake.db>QUALITY</snowflake.db>
         <snowflake.schema>DEV</snowflake.schema>
-        <snowflake.urlBase>https://ahb29042.us-east-1.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+        <snowflake.urlBase>jdbc:snowflake://cupueci-lmb72269.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
     </properties>
 
     <build>
