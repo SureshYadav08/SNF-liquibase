@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
-      - name:
-        run: Configure snowflake variables & run mvn liquibase update|
+      - name: Configure snowflake variables & run mvn liquibase update
+        run: |
           $env:SNOWFLAKE_ENV_ID = "QUALITY"
           $env:SNOWFLAKE_ACCOUNT = "cupueci-lmb72269"
           $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
