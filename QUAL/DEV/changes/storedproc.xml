@@ -3,13 +3,13 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-  <changeSet author="SureshYadav" id="2">
+  <changeSet author="SureshYadav" id="2-ih">
     <sql>
       CREATE OR REPLACE PROCEDURE Load_Staging_Zone(PARAMS VARIANT)
       RETURNS STRING
       LANGUAGE JAVASCRIPT
       EXECUTE AS CALLER
-      AS
+      AS '
       var successLog = '';
       var errorLog = '';
       var TableName = PARAMS["SOURCE_TABLE_NAME"];
@@ -52,6 +52,8 @@
       
       logSuccess("Final result: SUCCESS");
       return successLog;
+      END;
+      ';
     </sql>
     
     <rollback>
