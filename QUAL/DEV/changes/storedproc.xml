@@ -35,7 +35,7 @@ try {
         .replace(/[\/\s,:]/g, "-");
 
     var create_stage_sql = `
-        COPY INTO ${path}_${formattedTimestamp}.json.gz
+        COPY INTO "${path}"_"${formattedTimestamp}".json.gz
         FROM (SELECT OBJECT_CONSTRUCT(*)
  FROM "${databaseName}"."${schemaName}"."${TableName}")
         FILE_FORMAT = (TYPE = "JSON")
