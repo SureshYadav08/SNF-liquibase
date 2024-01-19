@@ -5,56 +5,56 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
   <changeSet author="SureshYadav" id="2-ih">
     <sql>
-      CREATE OR REPLACE PROCEDURE Load_Staging_Zone 
-(PARAMS VARIANT)RETURNS STRING LANGUAGE JAVASCRIPT EXECUTE 
+      CREATE OR REPLACE PROCEDURE Load_Staging_Zone(PARAMS VARIANT)
+    RETURNS STRING
+    LANGUAGE JAVASCRIPT
+    EXECUTE AS CALLER
 AS
-CALLER 
-AS
-' 
-            
-var successLog = '';
-var errorLog = '';
+'
+var successLog = "";
+var errorLog = "";
 var TableName = PARAMS["SOURCE_TABLE_NAME"];
 var schemaName = PARAMS["SCHEMA_NAME"];
 var databaseName = PARAMS["DATABASE_NAME"];
 var path = PARAMS["path"];
 
 function logError(errorMessage) {
-    errorLog += errorMessage + '' \n '';
+    errorLog += errorMessage + "\\n";
 }
 
 function logSuccess(successMessage) {
-    successLog += successMessage + ''\n '';
+    successLog += successMessage + "\\n";
 }
 
 try {
     var currentTimestamp = new Date();
-    
+
     // Format the timestamp to "dd_mm_yyyy_hh_mm_ss" format in UTC
     var formattedTimestamp = currentTimestamp
-        .toLocaleString('' en - GB '', { timeZone: '' UTC '', day: '' 2 - digit '', month: '' 2 - digit '', year: '' NUMERIC '', hour: '' 2 - digit '', minute: '' 2 - digit '', second: '' 2 - digit '' })
-        .replace(/[\/\s,:]/g, '' - '');
+        .toLocaleString("en-GB", { timeZone: "UTC", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit" })
+        .replace(/[\/\s,:]/g, "-");
 
-    var create_stage_sql = `
-        COPY INTO ${path}_${formattedTimestamp}.json.gz
-        FROM (SELECT OBJECT_CONSTRUCT(*) FROM "${databaseName}"."${schemaName}"."${TableName}")
-        FILE_FORMAT = (TYPE = '' JSON '')
-        SINGLE = TRUE
-        OVERWRITE = TRUE;
-    `;
+    var create_stage_sql = 
+        "COPY INTO '" + path + "_" + formattedTimestamp + ".json.gz' " +
+        "FROM (SELECT OBJECT_CONSTRUCT(*) FROM \"" + databaseName + "\".\"" + schemaName + "\".\"" + TableName + "\") " +
+        "FILE_FORMAT = (TYPE = 'JSON') " +
+        "SINGLE = TRUE " +
+        "OVERWRITE = TRUE;";
     snowflake.execute({ sqlText: create_stage_sql });
-    logSuccess('' Step 1 :createdsuccessfully. '');
+    logSuccess("Step 1: created successfully.");
 } catch (err) {
-    logError('' Step 1 Error :'' + err);
+    logError("Step 1 Error: " + err);
 }
 
-if (errorLog !== '''') {
-    return ''Error :'' + errorLog;
+if (errorLog !== "") {
+    return "Error: " + errorLog;
 }
 
-logSuccess(''Final result :SUCCESS'');
+logSuccess("Final result: SUCCESS");
 return successLog;
-            END;';
+END;
+';
+
     </sql>
     
     <rollback>
