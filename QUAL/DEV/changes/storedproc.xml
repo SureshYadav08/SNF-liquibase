@@ -37,7 +37,7 @@ try {
     var create_stage_sql = 
         "COPY INTO \"" + path + "_" + formattedTimestamp + ".json.gz\"\n" +
         "FROM (SELECT OBJECT_CONSTRUCT(*) FROM \"" + databaseName + "\".\"" + schemaName + "\".\"" + TableName + "\")\n" +
-        "FILE_FORMAT = (TYPE = ''JSON'')\n" +
+        "FILE_FORMAT = (TYPE = "JSON")\n" +
         "SINGLE = TRUE\n" +
         "OVERWRITE = TRUE;";
     
