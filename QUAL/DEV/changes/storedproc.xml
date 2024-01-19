@@ -5,16 +5,14 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
   <changeSet author="SureshYadav" id="1">
-    <sql>
-
-	CREATE OR REPLACE PROCEDURE Load_Staging_Zone(PARAMS VARIANT)
+    CREATE OR REPLACE PROCEDURE Load_Staging_Zone(PARAMS VARIANT)
     RETURNS STRING
     LANGUAGE JAVASCRIPT
     EXECUTE AS CALLER
 AS
 '
-var successLog = "";
-var errorLog = "";
+var successLog = '';
+var errorLog = '';
 var TableName = PARAMS["SOURCE_TABLE_NAME"];
 var schemaName = PARAMS["SCHEMA_NAME"];
 var databaseName = PARAMS["DATABASE_NAME"];
@@ -49,7 +47,7 @@ try {
     logError("Step 1 Error: " + err);
 }
 
-if (errorLog !== "") {
+if (errorLog !== '') {
     return "Error: " + errorLog;
 }
 
