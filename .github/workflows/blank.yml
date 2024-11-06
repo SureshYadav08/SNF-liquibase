@@ -21,3 +21,4 @@ jobs:
           mvn -version
           mvn install 
           mvn liquibase:update
+          # testing
