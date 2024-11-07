@@ -15,4 +15,4 @@ jobs:
           stale-pr-message: 'This PR is stale because it has been open 28 days with no activity. Remove stale label or comment or this will be closed in 5 days.'
           close-pr-message: 'This PR was closed because it has been stalled for 5 days with no activity.'
           days-before-stale: 0 # Stale after 4 weeks
-          days-before-close: 1 # Keep PR open for another 5 days before being closed automatically
+          days-before-close: 0 # Keep PR open for another 5 days before being closed automatically
