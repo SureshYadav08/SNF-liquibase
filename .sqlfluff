@@ -1,0 +1,3 @@
+[sqlfluff]
+dialect = snowflake
+ignore_comment_lines = True
