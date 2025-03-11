@@ -1,6 +1,9 @@
 [sqlfluff]
 dialect = snowflake
 
+[layout]
+max_line_length = 120  # Increase from the default 80
+
 [rule.LT05]
 ignore_comment_lines = True
 ignore_comment_clauses = True  # Optional: ignores column comments
