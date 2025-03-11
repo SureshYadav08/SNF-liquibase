@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset sivakanth.vabilishetty@invitationhomes.com:0849_MAINSTAY_SYNCUP_V2.sql
+--changeset sivakanth.vabilishetty@invitationhomes.com:0849_MAINSTAY_SYNCUP_Vv2.sql
 
 CREATE OR REPLACE TABLE ACTIVE_PRELISTINGS(
 MS_ID VARCHAR(16777216),
