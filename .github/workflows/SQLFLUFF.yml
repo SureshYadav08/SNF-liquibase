@@ -1,0 +1,143 @@
+name: SQL Linter
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sqlFiles: #List out changed/added SQL files
+   runs-on: ubuntu-latest
+   outputs:
+      sqlfiles: ${{ steps.set-sql-files.outputs.sqlfiles }}
+
+   steps:
+     - name: Clone Repo
+       uses: actions/checkout@v3
+
+     - name: Get changed/added files
+       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/origin/${{ github.event.pull_request.base.ref }}
+
+     - name: Get SQLfiles 
+       id: set-sql-files
+       run: echo "sqlfiles=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.event.pull_request.base.ref }} HEAD -- '*.sql' | uniq | jq -R -s -c 'split("\n")[:-1]' | jq -r '.[] | ("./" + .)' | jq -R -r -s -c 'split("\n")[:-1] | join(" ")')" >>$GITHUB_OUTPUT
+
+     - name: Print files to be scanned
+       run: echo ${{ steps.set-sql-files.outputs.sqlfiles }}
+
+  SQLFluff_py3:
+    runs-on: ubuntu-latest
+    needs: sqlFiles
+    if: ${{ needs.sqlFiles.outputs.sqlfiles != '' }}
+    steps:
+      - name: Echo SQL files to scan
+        run: echo ${{ needs.sqlFiles.outputs.sqlfiles }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+          architecture: x64
+
+      - name: Install SQLFluff
+        run: pip install sqlfluff
+        
+      - name: Set up failure tracking
+        run: |
+          echo "FAILURE_TRACKER=0" >> $GITHUB_ENV
+          echo "" > error_logs.txt
+
+      # Step 1: Aliasing Checks
+      - name: Run SQLFluff Alias Checks
+        run: |
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules AL01,AL02,AL03,AL04,AL08 --ignore parsing > alias_logs.txt || (
+            echo "❌ Alias Checks Failed" >> error_logs.txt &&
+            cat alias_logs.txt >> error_logs.txt &&
+            echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
+          )
+
+      # Step 2: Conventions Checks
+      - name: Run SQLFluff Convention Checks
+        run: |
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules CP01,CV01,CV03,CV05,CV07,CV08 --ignore parsing > convention_logs.txt || (
+            echo "❌ Convention Checks Failed" >> error_logs.txt &&
+            cat convention_logs.txt >> error_logs.txt &&
+            echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
+          )
+
+      # Step 3: Structural Checks
+      - name: Run SQLFluff Structure Checks
+        run: |
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules ST03,ST04,ST11,LT04,LT05,LT06,LT08 --config "ignore_comment_lines=True" --ignore parsing > structure_logs.txt || (
+            echo "❌ Structure Checks Failed" >> error_logs.txt &&
+            cat structure_logs.txt >> error_logs.txt &&
+            echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
+          )
+
+      # Step 4: Ambiguity Checks
+      - name: Run SQLFluff Ambiguity Checks
+        run: |
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules AM01,AM04,AM05,AM06,AM07 --ignore parsing > ambiguity_logs.txt || (
+            echo "❌ Ambiguity Checks Failed" >> error_logs.txt &&
+            cat ambiguity_logs.txt >> error_logs.txt &&
+            echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
+          )
+
+      # Step 5: References and Qualification Checks
+      - name: Run SQLFluff References and Qualification Checks
+        run: |
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules RF02,RF05 --ignore parsing > references_logs.txt || (
+            echo "❌ References and Qualification Checks Failed" >> error_logs.txt &&
+            cat references_logs.txt >> error_logs.txt &&
+            echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
+          )
+
+      # Step 5: RF01 Check (Warn Instead of Fail)
+      - name: Run SQLFluff RF01 Check (Warning Only)
+        run: |          
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules RF01 --ignore parsing > rf01_logs.txt || (
+            echo "⚠️ References (RF01) Warning: Please check the reference checks!" &&
+            echo "References (RF01) Warning: Please check the reference checks!" >> warning_logs.txt &&
+            cat rf01_logs.txt >> warning_logs.txt &&
+            echo "WARNING_TRACKER=1" >> $GITHUB_ENV
+          )
+
+
+      # Final Step: Fail If Necessary
+      - name: Aggregate Results and Fail If Necessary
+        run: |
+          if [ "$FAILURE_TRACKER" -eq "1" ]; then
+            echo "One or more checks failed. Below are the details:"
+            cat error_logs.txt
+            echo ""
+            echo "For more details about the errors and how to fix them, visit: https://docs.sqlfluff.com/en/stable/rules.html"
+            exit 1
+          fi
+
+      - name: Comment on PR with Results
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COMMENT_BODY="### SQLFluff Linter Results\n\n"
+
+          # Add failure messages
+          if [ "$FAILURE_TRACKER" -eq "1" ]; then
+            COMMENT_BODY+="❌ **Some checks failed:**\n\`\`\`\n$(cat error_logs.txt)\n\`\`\`\n\n"
+          fi
+
+          # Add warning messages
+          if [ -s warning_logs.txt ] && grep -q '[^[:space:]]' warning_logs.txt; then
+            COMMENT_BODY+="⚠️ **Warnings:**\n\`\`\`\n$(cat warning_logs.txt)\n\`\`\`\n\n"
+          fi
+
+          # If no issues found
+          if [ ! -s error_logs.txt ] && [ ! -s warning_logs.txt ]; then
+            COMMENT_BODY+="✅ **All checks passed successfully!**\n"
+          fi
+
+          # Post the comment using a here document
+          gh pr comment ${{ github.event.pull_request.number }} --body "$(echo -e "$COMMENT_BODY")"
