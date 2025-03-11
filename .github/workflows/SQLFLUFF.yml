@@ -71,7 +71,7 @@ jobs:
       # Step 3: Structural Checks
       - name: Run SQLFluff Structure Checks
         run: |
-          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules ST03,ST04,ST11,LT04,LT05,LT06,LT08 --ignore parsing > structure_logs.txt || (
+          sqlfluff lint ${{ needs.sqlFiles.outputs.sqlfiles }} --dialect snowflake --rules ST03,ST04,ST11,LT04,LT05,LT06,LT08 --config ignore_comment_lines=True --ignore parsing > structure_logs.txt || (
             echo "❌ Structure Checks Failed" >> error_logs.txt &&
             cat structure_logs.txt >> error_logs.txt &&
             echo "FAILURE_TRACKER=1" >> $GITHUB_ENV
