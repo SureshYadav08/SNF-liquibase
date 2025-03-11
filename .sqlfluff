@@ -1,3 +1,6 @@
 [sqlfluff]
 dialect = snowflake
+
+[rule.LT05]
 ignore_comment_lines = True
+ignore_comment_clauses = True  # Optional: ignores column comments
