@@ -16,7 +16,7 @@ jobs:
           $env:SNOWFLAKE_ACCOUNT = "XDAAIJY-FI41763"
           $env:SNOWFLAKE_WAREHOUSE = "${{secrets.SNOWFLAKE_WAREHOUSE}}"
           $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
-          $env:SNOWFLAKE_USER = "$${{secrets.SNOWFLAKE_USER}}"
+          $env:SNOWFLAKE_USER = "${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
           mvn -version
           mvn install 
