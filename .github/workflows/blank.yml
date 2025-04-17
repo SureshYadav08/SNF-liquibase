@@ -18,6 +18,10 @@ jobs:
           $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
           $env:SNOWFLAKE_USER = "$${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
+          $env:PRIVATE_KEY = "${{secrets.SNOWFLAKE_PRIVATE_KEY}}"
+          $env:PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
           mvn -version
           mvn install 
-          mvn liquibase:update
+          mvn liquibase:update `
+          -Dnet.snowflake.jdbc.privateKeyFile=$env:PRIVATE_KEY `
+          -Dnet.snowflake.jdbc.privateKeyFilePwd=$env:PRIVATE_KEY_PASSPHRASE
