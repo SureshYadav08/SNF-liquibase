@@ -40,8 +40,6 @@
                         <privateKeyFilePwd>${net.snowflake.jdbc.privateKeyFilePwd}</privateKeyFilePwd>
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
-                            <extStgEnv>${snowflake.extStgEnv}</extStgEnv>
-                            <sdlfAccountId>${snowflake.sdlfAccountId}</sdlfAccountId>
                         </expressionVariables>
                     </configuration>
                     <dependencies>
