@@ -11,8 +11,10 @@
 
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
+        <snowflake.privatekeypath>${env.PRIVATE_KEY_FILE_PATH}</snowflake.privatekeypath>
+        <snowflake.privatekeypassword>${PRIVATE_KEY_PASSWORD}</snowflake.privatekeypassword>
         <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file_pwd=${env.PRIVATE_KEY_FILE_PATH}&amp;private_key_pwd=${env.PRIVATE_KEY_PASSWORD}</snowflake.urlBase>
+            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
     </properties>
 
     <modules>
