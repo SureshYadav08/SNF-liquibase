@@ -14,10 +14,10 @@ jobs:
         run: |
           $env:SNOWFLAKE_ENV_ID = "QUAL"
           $env:SNOWFLAKE_ACCOUNT = "XDAAIJY-FI41763"
-          $env:SNOWFLAKE_WAREHOUSE = "COMPUTE_WH"
-          $env:SNOWFLAKE_ROLE = "ACCOUNTADMIN"
-          $env:SNOWFLAKE_USER = "SURESHGAJJI"
-          $env:SNOWFLAKE_PASSWORD = ""
+          $env:SNOWFLAKE_WAREHOUSE = "${{secrets.SNOWFLAKE_WAREHOUSE}}"
+          $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
+          $env:SNOWFLAKE_USER = "$${{secrets.SNOWFLAKE_USER}}"
+          $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
           mvn -version
           mvn install 
           mvn liquibase:update
