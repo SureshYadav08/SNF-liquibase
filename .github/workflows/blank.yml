@@ -26,7 +26,7 @@ jobs:
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
           $env:PRIVATE_KEY_PASSPHRASE = "${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}"
           mvn -version
-          mvn install 
-          mvn -Dnet.snowflake.jdbc.privateKeyFile= ${SNOWFLAKE_PRIVATE_KEY_PATH}
-          -Dnet.snowflake.jdbc.privateKeyFilePwd=${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
-          liquibase:update
+          mvn install
+          mvn liquibase:update `
+            -Dnet.snowflake.jdbc.privateKeyFile="$env:GITHUB_WORKSPACE\snowflake_rsa_key.p8" `
+            -Dnet.snowflake.jdbc.privateKeyFilePwd="$env:PRIVATE_KEY_PASSPHRASE"
