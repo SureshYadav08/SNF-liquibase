@@ -12,7 +12,7 @@
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
         <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file=${env.PRIVATE_KEY_FILE_PATH}&amp;private_key_pwd=${env.PRIVATE_KEY_PASSWORD}</snowflake.urlBase>
+            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file_pwd=${env.PRIVATE_KEY_FILE_PATH}&amp;private_key_pwd=${env.PRIVATE_KEY_PASSWORD}</snowflake.urlBase>
     </properties>
 
     <modules>
@@ -51,7 +51,7 @@
                         <dependency>
                             <groupId>net.snowflake</groupId>
                             <artifactId>snowflake-jdbc</artifactId>
-                            <version>3.13.29</version>
+                            <version>3.16.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>
