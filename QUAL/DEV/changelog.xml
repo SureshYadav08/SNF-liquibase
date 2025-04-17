@@ -10,5 +10,5 @@
     </sqlCheck>
   </preConditions>
   
-  <include file="changes/basetable.sql"/>
+  <include file="changes/base.sql"/>
 </databaseChangeLog>
