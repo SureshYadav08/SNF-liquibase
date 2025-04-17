@@ -14,8 +14,11 @@ jobs:
         run: |
           $keyPath = "$env:GITHUB_WORKSPACE\snowflake_rsa_key.p8"
           Set-Content -Path $keyPath -Value "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" -Encoding ascii
-          $env:SNOWFLAKE_PRIVATE_KEY_PATH = $keyPath
+          $env:PRIVATE_KEY_FILE_PATH = $keyPath
           echo "Private key written to: $keyPath"
+          echo "----------------------------------"
+          echo "Private key written to: ${PRIVATE_KEY_FILE_PATH}"
+          echo "----------------------------------"
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:SNOWFLAKE_ENV_ID = "QUAL"
