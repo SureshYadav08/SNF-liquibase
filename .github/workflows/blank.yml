@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
+      - name: Write private key to file
+        run: |
+          $keyPath = "$env:GITHUB_WORKSPACE\snowflake_rsa_key.p8"
+          Set-Content -Path $keyPath -Value "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" -Encoding ascii
+          $env:SNOWFLAKE_PRIVATE_KEY_PATH = $keyPath
+          echo "Private key written to: $keyPath"
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:SNOWFLAKE_ENV_ID = "QUAL"
@@ -18,6 +24,9 @@ jobs:
           $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
           $env:SNOWFLAKE_USER = "${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
+          $env:PRIVATE_KEY_PASSPHRASE = "${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}"
           mvn -version
           mvn install 
-          mvn liquibase:update
+          mvn -Dnet.snowflake.jdbc.privateKeyFile= ${SNOWFLAKE_PRIVATE_KEY_PATH}
+          -Dnet.snowflake.jdbc.privateKeyFilePwd=${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
+          liquibase:update
