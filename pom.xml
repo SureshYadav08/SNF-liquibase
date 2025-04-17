@@ -36,8 +36,8 @@
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
 <!--                         <password>${env.SNOWFLAKE_PASSWORD}</password> -->
-                        <privateKeyFile>${net.snowflake.jdbc.privateKeyFile}</privateKeyFile>
-                        <privateKeyFilePwd>${net.snowflake.jdbc.privateKeyFilePwd}</privateKeyFilePwd>
+<!--                         <privateKeyFile>${net.snowflake.jdbc.privateKeyFile}</privateKeyFile>
+                        <privateKeyFilePwd>${net.snowflake.jdbc.privateKeyFilePwd}</privateKeyFilePwd> -->
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
