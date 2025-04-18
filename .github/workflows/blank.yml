@@ -23,7 +23,7 @@ jobs:
           echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_key.p8
           $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
           $env:SNOWFLAKE_PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
-          # echo "JAVA_TOOL_OPTIONS=-Dnet.snowflake.jdbc.userPrivateKeyFile=snowflake_rsa_key.pem -Dnet.snowflake.jdbc.userPrivateKeyFilePwd=${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}" >> $GITHUB_ENV
+          echo "JAVA_TOOL_OPTIONS=-Dnet.snowflake.jdbc.userPrivateKeyFile=snowflake_rsa_key.pem -Dnet.snowflake.jdbc.userPrivateKeyFilePwd=${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}" >> $GITHUB_ENV
           mvn -version
           mvn install
           mvn liquibase:update
