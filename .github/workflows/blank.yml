@@ -13,7 +13,7 @@ jobs:
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:JAVA_HOME = $env:JAVA_HOME_11_X64
-          $env:JAVA_OPTS = "-Dnet.snowflake.jdbc.enableBouncyCastle=true"
+          # $env:JAVA_OPTS = "-Dnet.snowflake.jdbc.enableBouncyCastle=true"
           $env:SNOWFLAKE_ENV_ID = "QUAL"
           $env:SNOWFLAKE_ACCOUNT = "XDAAIJY-FI41763"
           $env:SNOWFLAKE_WAREHOUSE = "${{secrets.SNOWFLAKE_WAREHOUSE}}"
