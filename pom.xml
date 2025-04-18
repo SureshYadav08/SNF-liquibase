@@ -38,9 +38,8 @@
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
-                        <privateKeyFile>${env.PRIVATE_KEY_FILE_PATH }</privateKeyFile>
-                    <!-- <privateKey>${env.SF_PRIVATE_KEY}</privateKey> -->
-          <privateKeyPassphrase>${env.PRIVATE_KEY_PASSPHRASE}</privateKeyPassphrase>
+                       <privateKeyFile>${env.SNOWFLAKE_PRIVATE_KEY}</privateKeyFile>
+                       <privateKeyPassphrase>${env.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}</privateKeyPassphrase>
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
