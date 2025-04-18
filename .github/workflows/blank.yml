@@ -9,16 +9,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Clone Repo
-        uses: actions/checkout@v3
-      - name: Write private key to file
-        run: |
-          $keyPath = "$env:GITHUB_WORKSPACE\snowflake_rsa_key.p8"
-          Set-Content -Path $keyPath -Value "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" -Encoding ascii
-          $env:PRIVATE_KEY_FILE_PATH = $keyPath
-          echo "Private key written to: $keyPath"
-          echo "----------------------------------"
-          echo "Private key written to: ${PRIVATE_KEY_FILE_PATH}"
-          echo "----------------------------------"
+        uses: actions/checkout@v4
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:JAVA_HOME = $env:JAVA_HOME_11_X64
@@ -29,7 +20,8 @@ jobs:
           $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
           $env:SNOWFLAKE_USER = "${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
-          $env:PRIVATE_KEY_PASSPHRASE = "${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}"
+          echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_rsa_key.p8
+          echo "JAVA_TOOL_OPTIONS=-Dnet.snowflake.jdbc.userPrivateKeyFile=snowflake_rsa_key.p8 -Dnet.snowflake.jdbc.userPrivateKeyFilePwd=${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}" >> $GITHUB_ENV
           mvn -version
           mvn install
           mvn liquibase:update
