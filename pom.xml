@@ -11,7 +11,7 @@
 
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
-        <snowflake.authenticator>SNOWFLAKE_JWT</snowflake.authenticator>
+<!--         <snowflake.authenticator>SNOWFLAKE_JWT</snowflake.authenticator> -->
         <snowflake.urlBase>
             jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file=snowflake_key.p8&amp;private_key_file_pwd=${env.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}</snowflake.urlBase>
     </properties>
