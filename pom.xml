@@ -11,10 +11,10 @@
 
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
-        <snowflake.privatekeypath>${env.PRIVATE_KEY_FILE_PATH}</snowflake.privatekeypath>
-        <snowflake.privatekeypassword>${env:PRIVATE_KEY_PASSPHRASE}</snowflake.privatekeypassword>
+<!--         <snowflake.privatekeypath>${env.PRIVATE_KEY_FILE_PATH}</snowflake.privatekeypath>
+        <snowflake.privatekeypassword>${env.PRIVATE_KEY_PASSPHRASE}</snowflake.privatekeypassword> -->
         <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;authenticator=SNOWFLAKE_JWT</snowflake.urlBase>
     </properties>
 
     <modules>
@@ -37,9 +37,9 @@
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
-<!--                         <password>${env.SNOWFLAKE_PASSWORD}</password> -->
-<!--                         <privateKeyFile>${net.snowflake.jdbc.privateKeyFile}</privateKeyFile>
-                        <privateKeyFilePwd>${net.snowflake.jdbc.privateKeyFilePwd}</privateKeyFilePwd> -->
+                        <privateKeyFile>${env.PRIVATE_KEY_FILE_PATH }</privateKeyFile>
+                    <!-- <privateKey>${env.SF_PRIVATE_KEY}</privateKey> -->
+          <privateKeyPassphrase>${env.PRIVATE_KEY_PASSPHRASE}</privateKeyPassphrase>
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
