@@ -24,7 +24,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <configuration>
                     <skip>false</skip>
-                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}&amp;private_key_file=${snowflake.privatekeypath}&amp;private_key_file_pwd=${snowflake.privatekeypassword}</url>
+                    <url>${snowflake.urlBase}&amp;db=${snowflake.db}&amp;schema=${snowflake.schema}&amp;authenticator=${snowflake.authenticator}</url>
                 </configuration>
             </plugin>
         </plugins>
