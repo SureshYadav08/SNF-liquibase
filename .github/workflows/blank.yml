@@ -13,7 +13,6 @@ jobs:
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
           $env:JAVA_HOME = $env:JAVA_HOME_11_X64
-          $env:JAVA_OPTS = "-Dnet.snowflake.jdbc.enableBouncyCastle=true"
           $env:SNOWFLAKE_ENV_ID = "QUAL"
           $env:SNOWFLAKE_ACCOUNT = "XDAAIJY-FI41763"
           $env:SNOWFLAKE_WAREHOUSE = "${{secrets.SNOWFLAKE_WAREHOUSE}}"
@@ -21,9 +20,8 @@ jobs:
           $env:SNOWFLAKE_USER = "${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
           echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_key.p8
-          $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
+          # $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
           $env:SNOWFLAKE_PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
-          echo "JAVA_TOOL_OPTIONS=-Dnet.snowflake.jdbc.userPrivateKeyFile=snowflake_rsa_key.pem -Dnet.snowflake.jdbc.userPrivateKeyFilePwd=${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}" >> $GITHUB_ENV
           mvn -version
           mvn install
           mvn liquibase:update
