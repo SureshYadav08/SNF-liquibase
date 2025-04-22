@@ -21,10 +21,9 @@ jobs:
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
           echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_key.p8
           # $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
-          $env:SNOWFLAKE_PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
+          $env:TDDPASSWORD = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
           java -version
           mvn -version
           mvn install
-          mvn clean install -Dsnowflake.jdbc.enableBouncyCastle=true
           mvn liquibase:update
 
