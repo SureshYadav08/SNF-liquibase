@@ -32,7 +32,6 @@
                         <skip>true</skip>
                         <changeLogFile>changelog.xml</changeLogFile>
                         <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
-                        <net.snowflake.jdbc.enableBouncyCastle>true</net.snowflake.jdbc.enableBouncyCastle>
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
