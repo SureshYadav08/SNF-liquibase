@@ -22,6 +22,7 @@ jobs:
           echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_key.p8
           # $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
           $env:SNOWFLAKE_PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
+          java -version
           mvn -version
           mvn install
           mvn liquibase:update
