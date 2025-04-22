@@ -53,11 +53,11 @@
                             <artifactId>snowflake-jdbc</artifactId>
                             <version>3.22.0</version>
                         </dependency>
-                       <dependency>
+<!--                        <dependency>
                             <groupId>org.bouncycastle</groupId>
                             <artifactId>bcpkix-jdk18on</artifactId>
                             <version>1.76</version>
-                        </dependency>
+                        </dependency> -->
 <!--                         <dependency>
                             <groupId>org.bouncycastle</groupId>
                             <artifactId>bcpkix-jdk18on</artifactId>
