@@ -38,9 +38,6 @@
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
-                        <!-- <compilerArgs>
-                            <arg>-Dnet.snowflake.jdbc.enableBouncyCastle=true</arg>
-                        </compilerArgs> -->
                     </configuration>
                    <dependencies>
                         <dependency>
