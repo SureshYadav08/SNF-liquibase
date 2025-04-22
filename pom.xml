@@ -39,13 +39,8 @@
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
                     </configuration>
-                    <dependencies>
+                   <dependencies>
                         <dependency>
-                            <groupId>org.bouncycastle</groupId>
-                            <artifactId>bcprov-jdk15to18</artifactId>
-                            <version>1.78</version>
-                        </dependency>
-                        <dependency>   
                             <groupId>org.liquibase.ext</groupId>
                             <artifactId>liquibase-snowflake</artifactId>
                             <version>4.2.1</version>
