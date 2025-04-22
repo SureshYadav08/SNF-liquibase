@@ -11,7 +11,6 @@
 
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
-        <net.snowflake.jdbc.enableBouncyCastle>true</net.snowflake.jdbc.enableBouncyCastle>
         <snowflake.urlBase>
             jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file=snowflake_key.p8&amp;private_key_file_pwd=123123</snowflake.urlBase>
     </properties>
@@ -33,6 +32,7 @@
                         <skip>true</skip>
                         <changeLogFile>changelog.xml</changeLogFile>
                         <driver>net.snowflake.client.jdbc.SnowflakeDriver</driver>
+                        <net.snowflake.jdbc.enableBouncyCastle>true</net.snowflake.jdbc.enableBouncyCastle>
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
