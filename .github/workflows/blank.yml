@@ -25,4 +25,4 @@ jobs:
           java -version
           mvn -version
           mvn install
-          mvn liquibase:update
+          mvn -X -Dnet.snowflake.jdbc.enableBouncyCastle=true liquibase:update
