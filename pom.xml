@@ -11,7 +11,6 @@
 
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
-<!--         <snowflake.authenticator>SNOWFLAKE_JWT</snowflake.authenticator> -->
         <snowflake.urlBase>
             jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file=snowflake_key.p8</snowflake.urlBase>
     </properties>
@@ -28,7 +27,7 @@
                 <plugin>
                     <groupId>org.liquibase</groupId>
                     <artifactId>liquibase-maven-plugin</artifactId>
-                    <version>4.23.1</version>
+                    <version>4.2.2</version>
                     <configuration>
                         <skip>true</skip>
                         <changeLogFile>changelog.xml</changeLogFile>
@@ -36,8 +35,6 @@
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
-<!--                        <privateKeyFile>${env.SNOWFLAKE_PRIVATE_KEY}</privateKeyFile>
-                       <privateKeyPassphrase>${env.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}</privateKeyPassphrase> -->
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
                         </expressionVariables>
@@ -51,7 +48,7 @@
                         <dependency>
                             <groupId>net.snowflake</groupId>
                             <artifactId>snowflake-jdbc</artifactId>
-                            <version>3.16.1</version>
+                            <version>3.22.0</version>
                         </dependency>
                     </dependencies>
                 </plugin>
