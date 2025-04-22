@@ -26,4 +26,5 @@ jobs:
           mvn -version
           mvn install
           mvn clean install -Dsnowflake.jdbc.enableBouncyCastle=true
+          mvn liquibase:update
 
