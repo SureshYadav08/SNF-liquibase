@@ -12,7 +12,7 @@
     <properties>
         <snowflake.envId>${env.SNOWFLAKE_ENV_ID}</snowflake.envId>
         <snowflake.urlBase>
-            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}</snowflake.urlBase>
+            jdbc:snowflake://${env.SNOWFLAKE_ACCOUNT}.snowflakecomputing.com/?warehouse=${env.SNOWFLAKE_WAREHOUSE}&amp;role=${env.SNOWFLAKE_ROLE}&amp;private_key_file=snowflake_key.p8&amp;private_key_pwd=${env.TDDPASSWORD}</snowflake.urlBase>
     </properties>
 
     <modules>
@@ -35,14 +35,11 @@
                         <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                         <verbose>true</verbose>
                         <username>${env.SNOWFLAKE_USER}</username>
-                        <password>${env.SNOWFLAKE_PASSWORD}</password>
                         <expressionVariables>
                             <envId>${snowflake.envId}</envId>
-                            <extStgEnv>${snowflake.extStgEnv}</extStgEnv>
-                            <sdlfAccountId>${snowflake.sdlfAccountId}</sdlfAccountId>
                         </expressionVariables>
                     </configuration>
-                    <dependencies>
+                   <dependencies>
                         <dependency>
                             <groupId>org.liquibase.ext</groupId>
                             <artifactId>liquibase-snowflake</artifactId>
@@ -51,8 +48,13 @@
                         <dependency>
                             <groupId>net.snowflake</groupId>
                             <artifactId>snowflake-jdbc</artifactId>
-                            <version>3.13.29</version>
+                            <version>3.22.0</version>
                         </dependency>
+<!--                        <dependency>
+                            <groupId>org.bouncycastle</groupId>
+                            <artifactId>bcpkix-jdk18on</artifactId>
+                            <version>1.76</version>
+                        </dependency> -->
                     </dependencies>
                 </plugin>
             </plugins>

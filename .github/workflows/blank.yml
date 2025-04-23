@@ -9,19 +9,24 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Clone Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Configure snowflake variables & run mvn liquibase update
         run: |
+          $env:JAVA_HOME = $env:JAVA_HOME_11_X64
           $env:SNOWFLAKE_ENV_ID = "QUAL"
           $env:SNOWFLAKE_ACCOUNT = "XDAAIJY-FI41763"
           $env:SNOWFLAKE_WAREHOUSE = "${{secrets.SNOWFLAKE_WAREHOUSE}}"
           $env:SNOWFLAKE_ROLE = "${{secrets.SNOWFLAKE_ROLE}}"
-          $env:SNOWFLAKE_USER = "$${{secrets.SNOWFLAKE_USER}}"
+          $env:SNOWFLAKE_USER = "${{secrets.SNOWFLAKE_USER}}"
           $env:SNOWFLAKE_PASSWORD = "${{secrets.SNOWFLAKE_PASSWORD}}"
-          $env:PRIVATE_KEY = "${{secrets.SNOWFLAKE_PRIVATE_KEY}}"
-          $env:PRIVATE_KEY_PASSPHRASE = "${{secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}}"
+          echo "${{ secrets.SNOWFLAKE_PRIVATE_KEY }}" > snowflake_key.p8
+          # $env:SNOWFLAKE_PRIVATE_KEY = "snowflake_key.p8"
+          $env:TDDPASSWORD = "123123"
+          java -version
           mvn -version
-          mvn install 
-          mvn liquibase:update `
-          -Dnet.snowflake.jdbc.privateKeyFile=$env:PRIVATE_KEY `
-          -Dnet.snowflake.jdbc.privateKeyFilePwd=$env:PRIVATE_KEY_PASSPHRASE
+          mvn install
+          $env:MAVEN_OPTS="-Dnet.snowflake.jdbc.enableBouncyCastle=true"
+          mvn liquibase:update
+
+
+

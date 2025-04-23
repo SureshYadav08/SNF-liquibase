@@ -10,6 +10,5 @@
     </sqlCheck>
   </preConditions>
   
-  <include file="changes/createtable.xml"/>
-  <include file="changes/storedproc.xml"/>
+  <include file="changes/base.sql"/>
 </databaseChangeLog>
